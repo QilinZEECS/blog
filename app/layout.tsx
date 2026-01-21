@@ -15,12 +15,34 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://example.com";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(BASE_URL),
   title: {
     default: "My Tech Blog",
     template: "%s | My Tech Blog",
   },
   description: "A personal blog about technology and software development",
+  keywords: ["blog", "technology", "software development", "programming"],
+  authors: [{ name: "My Tech Blog" }],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: BASE_URL,
+    siteName: "My Tech Blog",
+    title: "My Tech Blog",
+    description: "A personal blog about technology and software development",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "My Tech Blog",
+    description: "A personal blog about technology and software development",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
