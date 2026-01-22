@@ -18,13 +18,11 @@ export default function Home() {
             <GlassCard className="flex h-full flex-col justify-between">
               <div>
                 <span className="mb-4 inline-block rounded-full bg-primary/20 px-3 py-1 text-xs font-medium text-primary">
-                  Hi, I'm Qilin 👋
+                  Write. Build. Learn. Repeat.
                 </span>
                 <h1 className="mb-4 bg-gradient-to-br from-foreground via-foreground to-muted-foreground bg-clip-text text-4xl font-bold tracking-tight text-transparent md:text-5xl">
-                  Qilin's
-                  <br />
                   <span className="bg-gradient-to-r from-primary to-accent bg-clip-text">
-                    Digital Garden
+                    Qilin's Digital Garden
                   </span>
                 </h1>
                 <p className="max-w-lg text-muted-foreground">
@@ -46,28 +44,18 @@ export default function Home() {
             </GlassCard>
           </BentoItem>
 
-          {/* Quick Stats / About */}
           <BentoItem>
             <GlassCard className="h-full">
               <div className="flex h-full flex-col justify-center text-center">
-                <div className="mb-2 text-4xl">🚀</div>
-                <h3 className="mb-2 font-semibold">Modern Stack</h3>
-                <p className="text-sm text-muted-foreground">
-                  Next.js, TypeScript, Tailwind CSS
-                </p>
+                <h3 className="font-semibold">Always Learning</h3>
               </div>
             </GlassCard>
           </BentoItem>
 
-          {/* Theme Indicator */}
           <BentoItem>
             <GlassCard className="h-full">
               <div className="flex h-full flex-col justify-center text-center">
-                <div className="mb-2 text-4xl">✨</div>
-                <h3 className="mb-2 font-semibold">Ethereal Design</h3>
-                <p className="text-sm text-muted-foreground">
-                  Glassmorphism & Bento Grid
-                </p>
+                <h3 className="font-semibold">Building Stuff</h3>
               </div>
             </GlassCard>
           </BentoItem>
