@@ -4,6 +4,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypePrettyCode from "rehype-pretty-code";
 import { getPostBySlug, getPostSlugs } from "@/lib/mdx";
+import { AUTHOR, BASE_URL, SITE_NAME } from "@/lib/config";
 import type { Metadata } from "next";
 
 interface PostPageProps {
@@ -21,9 +22,31 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) return {};
+
+  const url = `${BASE_URL}/posts/${slug}/`;
+
   return {
     title: post.title,
     description: post.description,
+    authors: [{ name: AUTHOR }],
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      type: "article",
+      locale: "zh_CN",
+      url,
+      siteName: SITE_NAME,
+      title: post.title,
+      description: post.description,
+      publishedTime: post.date,
+      authors: [AUTHOR],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+    },
   };
 }
 

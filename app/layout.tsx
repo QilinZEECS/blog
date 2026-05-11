@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
+import { AUTHOR, BASE_URL, SITE_DESCRIPTION, SITE_NAME } from "@/lib/config";
 
 const sans = Inter({
   variable: "--font-inter",
@@ -16,23 +17,29 @@ const mono = JetBrains_Mono({
   display: "swap",
 });
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://example.com";
-
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "Qilin's Blog",
-    template: "%s | Qilin's Blog",
+    default: SITE_NAME,
+    template: `%s | ${SITE_NAME}`,
   },
-  description: "Qilin 的个人博客",
-  authors: [{ name: "Qilin" }],
+  description: SITE_DESCRIPTION,
+  authors: [{ name: AUTHOR }],
+  alternates: {
+    canonical: BASE_URL,
+  },
   openGraph: {
     type: "website",
     locale: "zh_CN",
     url: BASE_URL,
-    siteName: "Qilin's Blog",
-    title: "Qilin's Blog",
-    description: "Qilin 的个人博客",
+    siteName: SITE_NAME,
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
   },
   robots: { index: true, follow: true },
 };

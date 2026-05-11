@@ -1,12 +1,8 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/mdx";
+import { BASE_URL } from "@/lib/config";
 
 export const dynamic = "force-static";
-
-const BASE_URL =
-  process.env.GITHUB_PAGES === "true"
-    ? "https://qilinzeecs.github.io/blog"
-    : process.env.NEXT_PUBLIC_BASE_URL || "https://example.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
