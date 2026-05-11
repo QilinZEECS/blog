@@ -1,26 +1,22 @@
 import Link from "next/link";
-import { ThemeToggle } from "./theme-toggle";
 
 export function Navbar() {
   return (
-    <header className="sticky top-0 z-50 w-full">
-      <div className="mx-auto max-w-6xl px-4 py-4">
-        <nav className="glass noise relative flex h-14 items-center justify-between rounded-2xl px-6">
+    <header className="border-b border-border">
+      <div className="mx-auto flex max-w-2xl items-baseline justify-between px-6 py-6">
+        <Link
+          href="/"
+          className="text-xl font-semibold text-foreground no-underline hover:no-underline"
+        >
+          Qilin&apos;s Blog
+        </Link>
+        <nav className="text-sm">
           <Link
             href="/"
-            className="bg-gradient-to-r from-primary to-accent bg-clip-text text-lg font-bold text-transparent"
+            className="text-muted-foreground no-underline hover:text-foreground hover:no-underline"
           >
-            Qilin's Blog
+            首页
           </Link>
-          <div className="flex items-center gap-4">
-            <Link
-              href="/"
-              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-            >
-              Home
-            </Link>
-            <ThemeToggle />
-          </div>
         </nav>
       </div>
     </header>

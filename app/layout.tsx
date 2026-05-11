@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
-import { AnimatedBackground } from "@/components/animated-background";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const sans = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const mono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://example.com";
@@ -24,55 +24,32 @@ export const metadata: Metadata = {
     default: "Qilin's Blog",
     template: "%s | Qilin's Blog",
   },
-  description:
-    "Qilin's personal blog about technology, software development, and creative coding",
-  keywords: [
-    "Qilin",
-    "blog",
-    "technology",
-    "software development",
-    "programming",
-  ],
+  description: "Qilin 的个人博客",
   authors: [{ name: "Qilin" }],
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "zh_CN",
     url: BASE_URL,
     siteName: "Qilin's Blog",
     title: "Qilin's Blog",
-    description:
-      "Qilin's personal blog about technology, software development, and creative coding",
+    description: "Qilin 的个人博客",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Qilin's Blog",
-    description:
-      "Qilin's personal blog about technology, software development, and creative coding",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="zh-CN" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
+        className={`${sans.variable} ${mono.variable} font-sans antialiased`}
       >
-        <ThemeProvider>
-          <AnimatedBackground />
-          <div className="relative flex min-h-screen flex-col">
-            <Navbar />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
-        </ThemeProvider>
+        <div className="flex min-h-screen flex-col">
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );

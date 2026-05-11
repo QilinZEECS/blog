@@ -4,7 +4,6 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypePrettyCode from "rehype-pretty-code";
 import { getPostBySlug, getPostSlugs } from "@/lib/mdx";
-import { GlassCard } from "@/components/glass-card";
 import type { Metadata } from "next";
 
 interface PostPageProps {
@@ -21,11 +20,7 @@ export async function generateMetadata({
 }: PostPageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = getPostBySlug(slug);
-
-  if (!post) {
-    return {};
-  }
-
+  if (!post) return {};
   return {
     title: post.title,
     description: post.description,
@@ -41,95 +36,53 @@ export default async function PostPage({ params }: PostPageProps) {
   }
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-8">
-      {/* Back Link */}
-      <Link
-        href="/"
-        className="mb-8 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+    <div className="mx-auto max-w-2xl px-6 py-12">
+      <header className="mb-10">
+        <h1 className="mb-3 text-3xl font-semibold leading-tight md:text-4xl">
+          {post.title}
+        </h1>
+        <time className="text-sm text-muted-foreground">
+          {new Date(post.date).toLocaleDateString("zh-CN", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
+        </time>
+      </header>
+
+      <article
+        className="prose prose-invert prose-neutral max-w-none
+          prose-headings:font-semibold
+          prose-a:text-[var(--link)] prose-a:no-underline hover:prose-a:underline
+          prose-blockquote:border-l-2 prose-blockquote:border-[color:var(--border)]
+          prose-blockquote:not-italic prose-blockquote:font-normal
+          prose-blockquote:text-muted-foreground
+          prose-code:rounded prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5
+          prose-code:before:content-none prose-code:after:content-none
+          prose-pre:bg-muted prose-pre:border prose-pre:border-[color:var(--border)]"
       >
-        <svg
-          className="h-4 w-4"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M7 16l-4-4m0 0l4-4m-4 4h18"
-          />
-        </svg>
-        Back to home
-      </Link>
-
-      {/* Article Header */}
-      <GlassCard className="mb-8" tiltEnabled={false}>
-        <header>
-          <div className="mb-4 flex items-center gap-3">
-            <span className="rounded-full bg-primary/20 px-3 py-1 text-xs font-medium text-primary">
-              Article
-            </span>
-            <time className="text-sm text-muted-foreground">
-              {new Date(post.date).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </time>
-          </div>
-          <h1 className="mb-4 bg-gradient-to-br from-foreground to-muted-foreground bg-clip-text text-3xl font-bold tracking-tight text-transparent md:text-4xl">
-            {post.title}
-          </h1>
-          {post.description && (
-            <p className="text-lg text-muted-foreground">{post.description}</p>
-          )}
-        </header>
-      </GlassCard>
-
-      {/* Article Content */}
-      <GlassCard tiltEnabled={false}>
-        <article className="prose prose-neutral dark:prose-invert max-w-none prose-headings:bg-gradient-to-r prose-headings:from-foreground prose-headings:to-muted-foreground prose-headings:bg-clip-text prose-headings:text-transparent prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-code:rounded prose-code:bg-secondary prose-code:px-1.5 prose-code:py-0.5 prose-code:before:content-none prose-code:after:content-none prose-pre:glass prose-pre:border prose-pre:border-border">
-          <MDXRemote
-            source={post.content}
-            options={{
-              mdxOptions: {
-                remarkPlugins: [remarkGfm],
-                rehypePlugins: [
-                  [
-                    rehypePrettyCode,
-                    {
-                      theme: "github-dark",
-                      keepBackground: false,
-                    },
-                  ],
+        <MDXRemote
+          source={post.content}
+          options={{
+            mdxOptions: {
+              remarkPlugins: [remarkGfm],
+              rehypePlugins: [
+                [
+                  rehypePrettyCode,
+                  { theme: "github-dark", keepBackground: false },
                 ],
-              },
-            }}
-          />
-        </article>
-      </GlassCard>
+              ],
+            },
+          }}
+        />
+      </article>
 
-      {/* Footer Navigation */}
-      <div className="mt-8 flex justify-center">
+      <div className="mt-16 border-t border-border pt-8">
         <Link
           href="/"
-          className="glass inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-all hover:scale-105"
+          className="text-sm text-muted-foreground no-underline hover:text-foreground"
         >
-          <svg
-            className="h-4 w-4"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M7 16l-4-4m0 0l4-4m-4 4h18"
-            />
-          </svg>
-          Back to all posts
+          ← 返回首页
         </Link>
       </div>
     </div>

@@ -1,13 +1,8 @@
 export function Footer() {
   return (
-    <footer className="py-8">
-      <div className="mx-auto max-w-6xl px-4">
-        <div className="glass noise relative flex h-16 items-center justify-center rounded-2xl">
-          <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} Qilin. Built with Next.js &amp;
-            Tailwind CSS.
-          </p>
-        </div>
+    <footer className="border-t border-border py-8">
+      <div className="mx-auto max-w-2xl px-6 text-sm text-muted-foreground">
+        © {new Date().getFullYear()} Qilin
       </div>
     </footer>
   );
