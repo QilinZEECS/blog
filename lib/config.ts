@@ -4,6 +4,6 @@
 export const BASE_URL =
   process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
-export const SITE_NAME = "随笔";
+export const SITE_NAME = "Whoever's Blog";
 export const SITE_DESCRIPTION = "一个匿名博客";
-export const AUTHOR = "随笔";
+export const AUTHOR = "Whoever";
