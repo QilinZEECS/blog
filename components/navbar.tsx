@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SITE_NAME } from "@/lib/config";
 
 export function Navbar() {
   return (
@@ -8,7 +9,7 @@ export function Navbar() {
           href="/"
           className="text-xl font-semibold text-foreground no-underline hover:no-underline"
         >
-          Qilin&apos;s Blog
+          {SITE_NAME}
         </Link>
         <nav className="text-sm">
           <Link
